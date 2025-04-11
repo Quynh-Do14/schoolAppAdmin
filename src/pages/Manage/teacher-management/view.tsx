@@ -28,6 +28,7 @@ const ViewTeacherManagement = () => {
     const [detailTeacher, setDetailTeacher] = useState<any>({});
 
     const dataMajorState = useRecoilValue(MajorState).data;
+    const dataDepartmentState = useRecoilValue(DepartmentState).data;
 
     const [_data, _setData] = useState<any>({});
     const dataTeacher = _data;
@@ -84,6 +85,7 @@ const ViewTeacherManagement = () => {
                 address: detailTeacher.address,
                 password: detailTeacher.password,
                 majorId: detailTeacher.majorId,
+                departmentId: detailTeacher.departmentId,
             });
         };
     }, [detailTeacher]);
@@ -104,6 +106,8 @@ const ViewTeacherManagement = () => {
                     password: dataTeacher.password,
                     roleName: "ROLE_STUDENT",
                     majorId: dataTeacher.majorId,
+                    departmentId: dataTeacher.departmentId,
+
                 },
                 onBack,
                 setLoading
@@ -177,6 +181,22 @@ const ViewTeacherManagement = () => {
                                         listDataOfItem={dataMajorState}
                                         valueById='id'
                                         valueByName='majorName'
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputSelectAPICommon
+                                        label={"Ngành"}
+                                        attribute={"departmentId"}
+                                        isRequired={true}
+                                        dataAttribute={dataTeacher.departmentId}
+                                        setData={setDataTeacher}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                        listDataOfItem={dataDepartmentState}
+                                        valueById='id'
+                                        valueByName='departmentName'
                                     />
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>

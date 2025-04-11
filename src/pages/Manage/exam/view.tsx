@@ -15,7 +15,7 @@ import InputDateCommon from '../../../infrastructure/common/components/input/inp
 import InputNumberCommon from '../../../infrastructure/common/components/input/input-number';
 import { TeacherState } from '../../../core/atoms/teacher/teacherState';
 import examService from '../../../infrastructure/repositories/exam/exam.service';
-import { convertHourShow, getPeriodFromTimeRange, getPeriodTimeRange } from '../../../infrastructure/helper/helper';
+import { convertDateOnly, convertHourShow, getPeriodFromTimeRange, getPeriodTimeRange } from '../../../infrastructure/helper/helper';
 import { CourseClassState } from '../../../core/atoms/courseClass/courseState';
 
 const ViewExamManagement = () => {
@@ -86,14 +86,14 @@ const ViewExamManagement = () => {
     const onUpdateCategoryAsync = async () => {
         await setSubmittedTime(Date.now());
         if (isValidData()) {
-            const { startTime, endTime } = getPeriodTimeRange(dataLesson.period, dataLesson.numberPeriod)
+            const { startTimeISO, endTimeISO } = getPeriodTimeRange(dataLesson.period, dataLesson.numberPeriod)
             await examService.updateExam(
                 String(param.id),
                 {
                     classesId: dataLesson.classId,
-                    examDate: dataLesson.examDate,
-                    endTime: endTime,
-                    startTime: startTime,
+                    examDate: convertDateOnly(dataLesson.examDate),
+                    endTime: endTimeISO,
+                    startTime: startTimeISO,
                     room: dataLesson.room,
                 },
                 onBack,

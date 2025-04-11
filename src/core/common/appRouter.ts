@@ -32,21 +32,23 @@ export const ROUTE_PATH = {
     ADD_MAJOR_MANAGEMENT: `${PREFIX}/major/add`,
     VIEW_MAJOR_MANAGEMENT: `${PREFIX}/major/view/:id`,
 
-    COURSE_MANAGEMENT: `${PREFIX}/course`,
-    ADD_COURSE_MANAGEMENT: `${PREFIX}/course/add`,
-    VIEW_COURSE_MANAGEMENT: `${PREFIX}/course/view/:id`,
+    COURSE_MANAGEMENT: `${PREFIX}/courses`,
+    ADD_COURSE_MANAGEMENT: `${PREFIX}/courses/add`,
+    VIEW_COURSE_MANAGEMENT: `${PREFIX}/courses/view/:id`,
 
-    STUDENT_MANAGEMENT: `${PREFIX}/student`,
-    ADD_STUDENT_MANAGEMENT: `${PREFIX}/student/add`,
-    VIEW_STUDENT_MANAGEMENT: `${PREFIX}/student/view/:id`,
+    STUDENT_MANAGEMENT: `${PREFIX}/students`,
+    ADD_STUDENT_MANAGEMENT: `${PREFIX}/students/add`,
+    VIEW_STUDENT_MANAGEMENT: `${PREFIX}/students/view/:id`,
 
     TEACHER_MANAGEMENT: `${PREFIX}/teacher`,
     ADD_TEACHER_MANAGEMENT: `${PREFIX}/teacher/add`,
     VIEW_TEACHER_MANAGEMENT: `${PREFIX}/teacher/view/:id`,
 
-    LESSON_MANAGEMENT: `${PREFIX}/lesson`,
-    ADD_LESSON_MANAGEMENT: `${PREFIX}/lesson/add`,
-    VIEW_LESSON_MANAGEMENT: `${PREFIX}/lesson/view/:id`,
+    COURSE_CLASS_MANAGEMENT: `${PREFIX}/courseClass`,
+    ADD_COURSE_CLASS_MANAGEMENT: `${PREFIX}/courseClass/add`,
+    VIEW_COURSE_CLASS_MANAGEMENT: `${PREFIX}/courseClass/views/:id`,
+    STUDENT_OF_COURSE_CLASS_MANAGEMENT: `${PREFIX}/courseClass/student/:id`,
+
 
     SCHEDULE_MANAGEMENT: `${PREFIX}/schedule`,
     ADD_SCHEDULE_MANAGEMENT: `${PREFIX}/schedule/add`,

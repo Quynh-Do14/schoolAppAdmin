@@ -26,7 +26,7 @@ export default class Constants {
             },
             {
                 label: "Quản lý lớp học phần",
-                link: ROUTE_PATH.LESSON_MANAGEMENT,
+                link: ROUTE_PATH.COURSE_CLASS_MANAGEMENT,
                 icon: UserOutlined
             },
             {
@@ -130,8 +130,8 @@ export default class Constants {
             static position = "Cô";
         }
         static List = [
-            { label: "Nam", value: "Nam" },
-            { label: "Nữ", value: "Nữ" },
+            { label: "Nam", value: "Male" },
+            { label: "Nữ", value: "Female" },
         ]
     }
     static Role = class {
@@ -186,7 +186,6 @@ export default class Constants {
                 { label: "Thứ 5", value: "THURSDAY" },
                 { label: "Thứ 6", value: "FRIDAY" },
                 { label: "Thứ 7", value: "SATURDAY" },
-                { label: "Chủ Nhật", value: "SUNDAY" }
             ];
         }
         static Room = class {

@@ -29,6 +29,7 @@ import ViewCourseClassManagement from "../../pages/Manage/courseClass-management
 import ListScheduleManagement from "../../pages/Manage/schedule-management/list";
 import AddScheduleManagement from "../../pages/Manage/schedule-management/add";
 import ViewScheduleManagement from "../../pages/Manage/schedule-management/view";
+import ListStudentOfCourseClassManagement from "../../pages/Manage/courseClass-management/listStudent";
 
 export const privateRoutes = [
     {
@@ -138,18 +139,24 @@ export const privateRoutes = [
     },
 
     {
-        path: ROUTE_PATH.LESSON_MANAGEMENT,
+        path: ROUTE_PATH.COURSE_CLASS_MANAGEMENT,
         component: ListCourseClassManagement,
         private: false,
     },
     {
-        path: ROUTE_PATH.ADD_LESSON_MANAGEMENT,
+        path: ROUTE_PATH.ADD_COURSE_CLASS_MANAGEMENT,
         component: AddCourseClassManagement,
         private: false,
     },
     {
-        path: ROUTE_PATH.VIEW_LESSON_MANAGEMENT,
+        path: ROUTE_PATH.VIEW_COURSE_CLASS_MANAGEMENT,
         component: ViewCourseClassManagement,
+        private: false,
+    },
+
+    {
+        path: ROUTE_PATH.STUDENT_OF_COURSE_CLASS_MANAGEMENT,
+        component: ListStudentOfCourseClassManagement,
         private: false,
     },
 

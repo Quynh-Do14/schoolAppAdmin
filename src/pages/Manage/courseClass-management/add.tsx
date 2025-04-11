@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Col, Row } from 'antd';
 import { ROUTE_PATH } from '../../../core/common/appRouter';
 import InputTextCommon from '../../../infrastructure/common/components/input/input-text';
@@ -11,11 +11,7 @@ import InputNumberCommon from '../../../infrastructure/common/components/input/i
 import InputSelectAPICommon from '../../../infrastructure/common/components/input/select-api-common';
 import { useRecoilValue } from 'recoil';
 import { CourseState } from '../../../core/atoms/course/courseState';
-import scheduleService from '../../../infrastructure/repositories/courseClass/courseClass.service';
-import InputSelectCommon from '../../../infrastructure/common/components/input/select-common';
-import Constants from '../../../core/common/constants';
 import { TeacherState } from '../../../core/atoms/teacher/teacherState';
-import InputDateCommon from '../../../infrastructure/common/components/input/input-date';
 import courseClassService from '../../../infrastructure/repositories/courseClass/courseClass.service';
 
 const AddCourseClassManagement = () => {
@@ -32,7 +28,7 @@ const AddCourseClassManagement = () => {
     const dataTeacherState = useRecoilValue(TeacherState).data;
 
     const onBack = () => {
-        navigate(ROUTE_PATH.LESSON_MANAGEMENT)
+        navigate(ROUTE_PATH.COURSE_CLASS_MANAGEMENT)
     };
     const setDataLesson = (data: any) => {
         Object.assign(dataLesson, { ...data });
@@ -69,7 +65,7 @@ const AddCourseClassManagement = () => {
     };
 
     return (
-        <ManageLayout breadcrumb={"Quản lý lớp học phần"} title={"Thêm lớp học phần"} redirect={ROUTE_PATH.LESSON_MANAGEMENT}>
+        <ManageLayout breadcrumb={"Quản lý lớp học phần"} title={"Thêm lớp học phần"} redirect={ROUTE_PATH.COURSE_CLASS_MANAGEMENT}>
             <div className='main-page h-full flex-1 overflow-auto bg-white px-4 py-8'>
                 <div className='bg-white scroll-auto'>
                     <Row>

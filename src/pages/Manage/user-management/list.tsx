@@ -158,6 +158,16 @@ const ListUserManagement = () => {
                     <Column
                         title={
                             <TitleTableCommon
+                                title="Tên đăng nhập"
+                                width={'200px'}
+                            />
+                        }
+                        key={"username"}
+                        dataIndex={"username"}
+                    />
+                    <Column
+                        title={
+                            <TitleTableCommon
                                 title="Email"
                                 width={'200px'}
                             />

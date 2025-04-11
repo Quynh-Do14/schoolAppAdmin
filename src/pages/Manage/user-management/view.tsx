@@ -17,6 +17,7 @@ import userService from '../../../infrastructure/repositories/user/user.service'
 import InputSelectAPICommon from '../../../infrastructure/common/components/input/select-api-common';
 import { useRecoilValue } from 'recoil';
 import { MajorState } from '../../../core/atoms/major/majorState';
+import { DepartmentState } from '../../../core/atoms/department/departmentState';
 
 const ViewUserManagement = () => {
     const [validate, setValidate] = useState<any>({});
@@ -26,6 +27,7 @@ const ViewUserManagement = () => {
     const [avatar, setAvatar] = useState(null);
     const [detailTeacher, setDetailTeacher] = useState<any>({});
     const dataMajorState = useRecoilValue(MajorState).data;
+    const dataDepartmentState = useRecoilValue(DepartmentState).data;
 
     const [_data, _setData] = useState<any>({});
     const dataTeacher = _data;
@@ -82,6 +84,7 @@ const ViewUserManagement = () => {
                 address: detailTeacher.address,
                 password: detailTeacher.password,
                 majorId: detailTeacher.majorId,
+                departmentId: detailTeacher.departmentId,
             });
         };
     }, [detailTeacher]);
@@ -102,6 +105,7 @@ const ViewUserManagement = () => {
                     password: dataTeacher.password,
                     roleName: "ROLE_STUDENT",
                     majorId: dataTeacher.majorId,
+                    departmentId: dataTeacher.departmentId,
                 },
                 onBack,
                 setLoading
@@ -178,6 +182,22 @@ const ViewUserManagement = () => {
                                     />
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputSelectAPICommon
+                                        label={"Ngành"}
+                                        attribute={"departmentId"}
+                                        isRequired={true}
+                                        dataAttribute={dataTeacher.departmentId}
+                                        setData={setDataTeacher}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                        listDataOfItem={dataDepartmentState}
+                                        valueById='id'
+                                        valueByName='departmentName'
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputDateCommon
                                         label={"Ngày sinh"}
                                         attribute={"dob"}
@@ -220,9 +240,9 @@ const ViewUserManagement = () => {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputSelectCommon
                                         label={"Giới tính"}
-                                        attribute={"sex"}
+                                        attribute={"gender"}
                                         isRequired={true}
-                                        dataAttribute={dataTeacher.sex}
+                                        dataAttribute={dataTeacher.gender}
                                         setData={setDataTeacher}
                                         disabled={false}
                                         validate={validate}

@@ -14,8 +14,8 @@ import { TitleTableCommon } from '../../../infrastructure/common/components/text
 import { ActionCommon } from '../../../infrastructure/common/components/action/action-common'
 import { ButtonCommon } from '../../../infrastructure/common/components/button/button-common'
 import { InputSearchCommon } from '../../../infrastructure/common/components/input/input-search-common'
-import scheduleService from '../../../infrastructure/repositories/courseClass/courseClass.service'
 import courseClassService from '../../../infrastructure/repositories/courseClass/courseClass.service'
+import { ActionGradeCommon } from '../../../infrastructure/common/components/action/action-grade'
 
 let timeout: any
 const ListCourseClassManagement = () => {
@@ -100,8 +100,14 @@ const ListCourseClassManagement = () => {
         }
     }
     const onNavigate = (id: any) => {
-        navigate(`${(ROUTE_PATH.VIEW_LESSON_MANAGEMENT).replace(`${Constants.UseParams.Id}`, "")}${id}`);
+        navigate(`${(ROUTE_PATH.VIEW_COURSE_CLASS_MANAGEMENT).replace(`${Constants.UseParams.Id}`, "")}${id}`);
     }
+
+
+    const onNavigateShowMore = (id: any) => {
+        navigate(`${(ROUTE_PATH.STUDENT_OF_COURSE_CLASS_MANAGEMENT).replace(`${Constants.UseParams.Id}`, "")}${id}`);
+    }
+
     return (
         <ManageLayout breadcrumb={"Quản lý lớp học phần"} title={"Danh sách lớp học phần"} redirect={""}>
             <div className='flex flex-col header-page'>
@@ -123,7 +129,7 @@ const ListCourseClassManagement = () => {
                         <ButtonCommon
                             icon={<PlusOutlined />}
                             classColor="green"
-                            onClick={() => navigate(ROUTE_PATH.ADD_LESSON_MANAGEMENT)}
+                            onClick={() => navigate(ROUTE_PATH.ADD_COURSE_CLASS_MANAGEMENT)}
                             title={"Thêm mới"} />
                     </Col>
                 </Row>
@@ -152,7 +158,7 @@ const ListCourseClassManagement = () => {
                                 width={'100px'}
                             />
                         }
-                        key={"courseClassId"}
+                        key={"id"}
                         dataIndex={"courseClassId"}
                     />
                     <Column
@@ -172,8 +178,8 @@ const ListCourseClassManagement = () => {
                                 width={'100px'}
                             />
                         }
-                        key={"maxStudent"}
-                        dataIndex={"maxStudent"}
+                        key={"semester"}
+                        dataIndex={"semester"}
                     />
 
                     <Column
@@ -183,8 +189,8 @@ const ListCourseClassManagement = () => {
                                 width={'100px'}
                             />
                         }
-                        key={"semester"}
-                        dataIndex={"semester"}
+                        key={"maxStudent"}
+                        dataIndex={"maxStudent"}
                     />
                     <Column
                         title={
@@ -193,7 +199,7 @@ const ListCourseClassManagement = () => {
                                 width={"60px"}
                             />
                         }
-                        width={"60px"}
+                        width={"100px"}
                         fixed="right"
                         align='center'
                         render={(action, record: any) => (
@@ -208,9 +214,10 @@ const ListCourseClassManagement = () => {
                             //         <MenuOutlined className="pointer" />
                             //     </Dropdown>
                             // </Space>
-                            <ActionCommon
-                                onClickDetail={() => onNavigate(record._id)}
-                                onClickDelete={() => onOpenModalDelete(record._id)}
+                            <ActionGradeCommon
+                                onClickShowMore={() => onNavigateShowMore(record.id)}
+                                onClickDetail={() => onNavigate(record.id)}
+                                onClickDelete={() => onOpenModalDelete(record.id)}
                             />
                         )}
                     />
@@ -227,9 +234,9 @@ const ListCourseClassManagement = () => {
                 />
             </div>
             <DialogConfirmCommon
-                message={"Bạn có muốn xóa bài giảng này ra khỏi hệ thống"}
+                message={"Bạn có muốn xóa học phần này ra khỏi hệ thống"}
                 titleCancel={"Bỏ qua"}
-                titleOk={"Xóa bài giảng"}
+                titleOk={"Xóa học phần"}
                 visible={isDeleteModal}
                 handleCancel={onCloseModalDelete}
                 handleOk={onDeleteAsync}

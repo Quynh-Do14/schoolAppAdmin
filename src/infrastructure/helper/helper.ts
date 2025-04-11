@@ -110,17 +110,19 @@ export const getPeriodTimeRange = (startPeriod = 1, numPeriods = 1) => {
     };
 
     const formatTime = (h: number, m: number) =>
-        `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+        `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:00`;
 
     const toISOStringTime = (dateStr: string, hour: number, minute: number) =>
-        `${dateStr}T${formatTime(hour, minute)}:00`;
+        `${dateStr}T${formatTime(hour, minute)}`;
 
     const start = getTime(startOffset);
     const end = getTime(endOffset);
 
     return {
-        startTime: toISOStringTime(dateStr, start.hour, start.minute),
-        endTime: toISOStringTime(dateStr, end.hour, end.minute),
+        startTimeISO: toISOStringTime(dateStr, start.hour, start.minute),
+        endTimeISO: toISOStringTime(dateStr, end.hour, end.minute),
+        startTime: formatTime(start.hour, start.minute),
+        endTime: formatTime(end.hour, end.minute),
     };
 };
 export const getPeriodFromTimeRange = (startISO: string, endISO: string) => {

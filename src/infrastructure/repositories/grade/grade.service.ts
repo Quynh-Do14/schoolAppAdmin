@@ -2,12 +2,12 @@ import { Endpoint } from "../../../core/common/apiLink";
 import { FailMessage, SuccessMessage } from "../../common/components/toast/notificationToast";
 import { RequestService } from "../../utils/response";
 
-class CourseClassService {
-    async getCourseClass(params: any, setLoading: Function) {
+class GradeService {
+    async getGrade(params: any, setLoading: Function) {
         setLoading(true)
         try {
             return await RequestService.
-                get(Endpoint.CourseClass.Get,
+                get(Endpoint.Grade.Get,
                     { ...params }
                 ).then(response => {
                     return response;
@@ -19,11 +19,11 @@ class CourseClassService {
             setLoading(false);
         }
     }
-    async getCourseClassById(id: string, setLoading: Function) {
+    async getGradeById(id: string, setLoading: Function) {
         setLoading(true)
         try {
             return await RequestService
-                .get(`${Endpoint.CourseClass.Get}/${id}`)
+                .get(`${Endpoint.Grade.Get}/${id}`)
                 .then(response => {
                     if (response) {
                         return response
@@ -37,11 +37,11 @@ class CourseClassService {
             setLoading(false);
         }
     };
-    async addCourseClass(data: object, onBack: Function, setLoading: Function) {
+    async addGrade(data: object, onBack: Function, setLoading: Function) {
         setLoading(true)
         try {
             return await RequestService
-                .post(Endpoint.CourseClass.Add,
+                .post(Endpoint.Grade.Add,
                     data
                 )
                 .then(response => {
@@ -60,11 +60,11 @@ class CourseClassService {
             setLoading(false);
         }
     }
-    async updateCourseClass(id: string, data: object, onBack: Function, setLoading: Function) {
+    async updateGrade(data: object, onBack: Function, setLoading: Function) {
         setLoading(true)
         try {
             return await RequestService
-                .put(`${Endpoint.CourseClass.Update}/${id}`,
+                .put(`${Endpoint.Grade.Update}`,
                     data
                 )
                 .then(response => {
@@ -83,11 +83,11 @@ class CourseClassService {
             setLoading(false);
         }
     }
-    async deleteCourseClass(id: string, setLoading: Function) {
+    async deleteGrade(id: string, setLoading: Function) {
         setLoading(true)
         try {
             return await RequestService
-                .delete(`${Endpoint.CourseClass.Delete}/${id}`)
+                .delete(`${Endpoint.Grade.Delete}/${id}`)
                 .then(response => {
                     if (response) {
                         SuccessMessage("Xóa thành công", "")
@@ -103,23 +103,6 @@ class CourseClassService {
             setLoading(false);
         }
     }
-
-    async getStudentCourseClass(id: string, setLoading: Function) {
-        setLoading(true)
-        try {
-            return await RequestService.
-                get(`${Endpoint.CourseClass.Student}/${id}`,
-                    {}
-                ).then(response => {
-                    return response;
-                });
-        }
-        catch (error) {
-            console.log(error)
-        } finally {
-            setLoading(false);
-        }
-    }
 }
 
-export default new CourseClassService();
+export default new GradeService();

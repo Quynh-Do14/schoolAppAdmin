@@ -15,7 +15,7 @@ import Constants from '../../../core/common/constants';
 import { TeacherState } from '../../../core/atoms/teacher/teacherState';
 import InputDateCommon from '../../../infrastructure/common/components/input/input-date';
 import examService from '../../../infrastructure/repositories/exam/exam.service';
-import { getPeriodTimeRange } from '../../../infrastructure/helper/helper';
+import { convertDateOnly, getPeriodTimeRange } from '../../../infrastructure/helper/helper';
 import { CourseClassState } from '../../../core/atoms/courseClass/courseState';
 
 const AddExamxManagement = () => {
@@ -54,12 +54,12 @@ const AddExamxManagement = () => {
     const onAddLessonAsync = async () => {
         await setSubmittedTime(Date.now());
         if (isValidData()) {
-            const { startTime, endTime } = getPeriodTimeRange(dataLesson.period, dataLesson.numberPeriod)
+            const { startTimeISO, endTimeISO } = getPeriodTimeRange(dataLesson.period, dataLesson.numberPeriod)
             await examService.addExam({
                 classesId: dataLesson.classesId,
-                examDate: dataLesson.examDate,
-                endTime: endTime,
-                startTime: startTime,
+                examDate: convertDateOnly(dataLesson.examDate),
+                endTime: endTimeISO,
+                startTime: startTimeISO,
                 room: dataLesson.room,
             },
                 onBack,

@@ -69,7 +69,6 @@ const InputTextCommon = (props: Props) => {
             onBlur(true);
         }
     }, [submittedTime]);
-    console.log('validate', validate);
 
     return (
         <div>

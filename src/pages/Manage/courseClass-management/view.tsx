@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Col, Row } from 'antd';
 import { ROUTE_PATH } from '../../../core/common/appRouter';
-import InputTextCommon from '../../../infrastructure/common/components/input/input-text';
 import { ButtonCommon } from '../../../infrastructure/common/components/button/button-common';
 import { FullPageLoading } from '../../../infrastructure/common/components/controls/loading';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -10,11 +9,6 @@ import ManageLayout from '../../../infrastructure/common/Layouts/Manage-Layout';
 import InputSelectAPICommon from '../../../infrastructure/common/components/input/select-api-common';
 import { useRecoilValue } from 'recoil';
 import { CourseState } from '../../../core/atoms/course/courseState';
-import UploadVideo from '../../../infrastructure/common/components/input/upload-video';
-import TextEditorCommon from '../../../infrastructure/common/components/input/text-editor';
-import CheckBoxCommon from '../../../infrastructure/common/components/input/checkbox-common';
-import UploadFileCommon from '../../../infrastructure/common/components/input/upload-file';
-import scheduleService from '../../../infrastructure/repositories/courseClass/courseClass.service';
 import InputSelectCommon from '../../../infrastructure/common/components/input/select-common';
 import Constants from '../../../core/common/constants';
 import InputDateCommon from '../../../infrastructure/common/components/input/input-date';
@@ -27,8 +21,6 @@ const ViewCourseClassManagement = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [submittedTime, setSubmittedTime] = useState<any>();
     const [detailLesson, setDetailLesson] = useState<any>({});
-    const [document, setDocument] = useState(null);
-    const [video, setVideo] = useState(null);
     const dataCourseState = useRecoilValue(CourseState).data;
     const dataTeacherState = useRecoilValue(TeacherState).data;
 
@@ -39,7 +31,7 @@ const ViewCourseClassManagement = () => {
     const navigate = useNavigate();
 
     const onBack = () => {
-        navigate(ROUTE_PATH.LESSON_MANAGEMENT)
+        navigate(ROUTE_PATH.COURSE_CLASS_MANAGEMENT)
     };
     const setDataLesson = (data: any) => {
         Object.assign(dataLesson, { ...data });
@@ -78,16 +70,8 @@ const ViewCourseClassManagement = () => {
     useEffect(() => {
         if (detailLesson) {
             setDataLesson({
-                course_id: detailLesson?.course_id?._id,
-                teacher_id: detailLesson?.teacher_id?._id,
-                academic_year: detailLesson.academic_year,
-                semester: detailLesson.semester,
-                start_date: detailLesson.start_date,
-                end_date: detailLesson.end_date,
-                day_of_week: detailLesson.day_of_week,
-                period: detailLesson.period,
-                quantity: detailLesson.quantity,
-                room: detailLesson.room,
+                courseId: detailLesson.courseId,
+                maxStudent: detailLesson.maxStudent,
             });
         };
     }, [detailLesson]);
@@ -98,16 +82,8 @@ const ViewCourseClassManagement = () => {
             await courseClassService.updateCourseClass(
                 String(param.id),
                 {
-                    course_id: dataLesson.course_id,
-                    teacher_id: dataLesson.teacher_id,
-                    academic_year: dataLesson.academic_year,
-                    semester: dataLesson.semester,
-                    start_date: dataLesson.start_date,
-                    end_date: dataLesson.end_date,
-                    day_of_week: dataLesson.day_of_week,
-                    period: dataLesson.period,
-                    quantity: dataLesson.quantity,
-                    room: dataLesson.room,
+                    courseId: dataLesson.courseId,
+                    maxStudent: dataLesson.maxStudent,
                 },
                 onBack,
                 setLoading
@@ -119,7 +95,7 @@ const ViewCourseClassManagement = () => {
     };
 
     return (
-        <ManageLayout breadcrumb={"Quản lý lớp học phần"} title={"Xem chi tiết"} redirect={ROUTE_PATH.LESSON_MANAGEMENT}>
+        <ManageLayout breadcrumb={"Quản lý lớp học phần"} title={"Xem chi tiết"} redirect={ROUTE_PATH.COURSE_CLASS_MANAGEMENT}>
             <div className='main-page h-full flex-1 overflow-auto bg-white px-4 py-8'>
                 <div className='bg-white scroll-auto'>
                     <Row gutter={[30, 0]}>

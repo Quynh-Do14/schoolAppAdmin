@@ -16,8 +16,9 @@ import Constants from '../../../core/common/constants';
 import { TeacherState } from '../../../core/atoms/teacher/teacherState';
 import InputDateCommon from '../../../infrastructure/common/components/input/input-date';
 import scheduleService from '../../../infrastructure/repositories/schedule/schedule.service';
-import { getPeriodTimeRange } from '../../../infrastructure/helper/helper';
+import { convertDateOnly, getPeriodTimeRange } from '../../../infrastructure/helper/helper';
 import InputArraySelectCommon from '../../../infrastructure/common/components/input/select-array';
+import { CourseClassState } from '../../../core/atoms/courseClass/courseState';
 
 const AddScheduleManagement = () => {
     const [validate, setValidate] = useState<any>({});
@@ -29,7 +30,7 @@ const AddScheduleManagement = () => {
 
     const navigate = useNavigate();
 
-    const dataCourseState = useRecoilValue(CourseState).data;
+    const dataCourseState = useRecoilValue(CourseClassState).data;
 
     const onBack = () => {
         navigate(ROUTE_PATH.SCHEDULE_MANAGEMENT)
@@ -61,8 +62,8 @@ const AddScheduleManagement = () => {
                 room: dataLesson.room,
                 endTime: endTime,
                 startTime: startTime,
-                date: dataLesson.date,
-                endDate: dataLesson.endDate,
+                date: convertDateOnly(dataLesson.date),
+                endDate: convertDateOnly(dataLesson.endDate),
                 daysOfWeek: dataLesson.daysOfWeek,
             },
                 onBack,
@@ -95,7 +96,7 @@ const AddScheduleManagement = () => {
                                         submittedTime={submittedTime}
                                         listDataOfItem={dataCourseState}
                                         valueById='id'
-                                        valueByName='name'
+                                        valueByName='courseName'
                                     />
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>

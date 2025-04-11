@@ -55,9 +55,10 @@ export class Endpoint {
     static CourseClass = class {
         static Get = "/v1/courseClass/userId"
         static GetPublic = "/v1/courseClass/userId"
-        static Add = "/v1/courseClass/userId"
-        static Update = "/v1/courseClass/userId"
-        static Delete = "/v1/courseClass/userId"
+        static Add = "/v1/courseClass"
+        static Update = "/v1/courseClass"
+        static Delete = "/v1/courseClass"
+        static Student = "/v1/enrollment/class"
     }
 
     static Exam = class {
@@ -71,6 +72,13 @@ export class Endpoint {
         static Add = "/v1/schedules"
         static Update = "/v1/schedules"
         static Delete = "/v1/schedules"
+    }
+
+    static Grade = class {
+        static Get = "/v1/grades"
+        static Add = "/v1/grades"
+        static Update = "/v1/grades"
+        static Delete = "/v1/grades"
     }
 
     static Registration = class {
